@@ -119,6 +119,15 @@ footer {
 .standings-leader .sl-statistics span {
   display: block;
 }
+.standings-leader span.sl-number {
+  color: #fff;
+  font-size: 1.75em;
+  font-weight: bold;
+  left: 8px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .standings-table {
   border-collapse: collapse;
   width: 100%;
