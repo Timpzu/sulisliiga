@@ -1,0 +1,15 @@
+{
+    "players": [
+        {"name": "ukko", "wins": 0, "losses": 0, "elo": 0},
+        {"name": "matti", "wins": 0, "losses": 0, "elo": 0},
+        {"name": "pietari", "wins": 0, "losses": 0, "elo": 0},
+        {"name": "moukari", "wins": 0, "losses": 0, "elo": 0}
+    ],
+
+    "matchHistory": [
+        {"date": "10.09.1996", "type": 1, "team1": "ukko", "team2": "matti", "winner": 1, "score": "21-0"},
+        {"date": "10.09.1996", "type": 1, "team1": "ukko", "team2": "matti", "winner": 1, "score": "21-0"},
+        {"date": "10.09.1996", "type": 1, "team1": "ukko", "team2": "matti", "winner": 1, "score": "21-0"},
+        {"date": "10.09.1996", "type": 1, "team1": "ukko", "team2": "matti", "winner": 1, "score": "21-0"}
+    ]
+}
