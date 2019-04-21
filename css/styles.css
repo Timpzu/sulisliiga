@@ -21,7 +21,10 @@ header {
   background-repeat: no-repeat;
   background-size: contain;
   grid-area: header;
-  height: 200px;
+  margin-top: 24px;
+  padding-top: 36%;
+  position: relative;
+  width: 100%;
 }
 main {
   grid-area: main;
@@ -30,8 +33,9 @@ main {
   grid-area: right;
 }
 footer {
-  align-items: flex-end;
+  align-items: center;
   background: #262626;
+  color: #fff;
   display: flex;
   grid-area: footer;
   justify-content: flex-end;
@@ -47,16 +51,35 @@ footer {
     'footer footer footer footer footer footer footer footer';
   grid-gap: 24px;
 }
-
 .match-table {
+  border-collapse: collapse;
+  font-size: 1em;
   width: 100%;
 }
-.match-table tr {
+.match-table tbody {
   border: #262626 5px solid;
-  height: 150px;
+  padding: 24px;
 }
-
-
+.match-table tr td {
+  padding: 16px;
+  width: 25%;
+  text-align: center;
+}
+.match-table tr td.mt-date {
+  background: #d2202a;
+  color: #fff;
+  width: 25%;
+}
+.match-table.doubles tr td.mt-date {
+  background: #184f93;
+  color: #fff;
+}
+.match-table tr td.mt-score {
+  font-size: 1.15em;
+}
+.match-table.doubles tr td {
+  padding: 8px;
+}
 .standings-leader {
   background: linear-gradient(#262626, #555555);
   border: #262626 5px solid;
@@ -67,7 +90,7 @@ footer {
   position: relative;
   width: 100%;
 }
-.standings-leader .sl-portrait {
+.standings-leader .sl-content {
   height: 100%;
   position: relative;
 }
@@ -82,25 +105,22 @@ footer {
   top: 12px;
   z-index: 50;
 }
-.standings-leader .sl-statics {
+.standings-leader .sl-statistics {
   color: #fff;
+  left: 204px;
   position: absolute;
-  top: 0;
+  top: 12px;
+  z-index: 200;
 }
-.standings-leader .sl-statics span.sl-name {
+.standings-leader .sl-statistics span.sl-name {
   font-size: 1.15em;
   font-weight: bold;
 }
-.standings-leader .sl-statics span {
+.standings-leader .sl-statistics span {
   display: block;
 }
-th, td {
-  border: none;
-}
-table {
-  border-collapse: collapse;
-}
 .standings-table {
+  border-collapse: collapse;
   width: 100%;
 }
 .standings-table tr {
@@ -117,18 +137,14 @@ table {
 .standings-table tr:nth-child(odd) {
   background-color: #262626;
 }
-/* .standings-table tr:first-child {
-  background-color: #262626;
-} */
 .standings-table th {
   text-align: left;
 }
-.standings-table td:nth-child(4) {
-  font-weight: bold;
+@media only screen and (max-width: 840px) and (min-width: 720px) {
+  .standings-leader .sl-statistics {
+    left: 24px;
+  }
 }
-
-
-
 @media only screen and (max-width: 720px) {
   .grid-container {
     grid-template-columns: repeat(4, 1fr);
@@ -141,6 +157,9 @@ table {
   }
   .wrapper {
     padding: 0 16px;
+  }
+  header {
+    padding-top: 56.6%;
   }
   footer {
     margin: 0 -16px;
