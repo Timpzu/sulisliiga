@@ -45,4 +45,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Database script
+db.php
+
+
 # End of https://www.gitignore.io/api/git,macos
