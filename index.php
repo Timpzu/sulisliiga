@@ -1,9 +1,36 @@
 <?php
   require 'scripts/db.php';
 
-  $sql = "SELECT * FROM competitors";
+  $sql = "SELECT g.date, g.score, wp.firstname AS w_name, lp.firstname AS l_name   
+          FROM game g 
+          LEFT JOIN player wp ON g.winner_id = wp.player_id 
+          LEFT JOIN player lp ON g.loser_id = lp.player_id ORDER BY g.date DESC LIMIT 0, 10";
+
+  $sql_2 = "SELECT p.firstname, p.club, 
+            (SELECT COUNT(*) 
+            FROM game g 
+            WHERE p.player_id = g.loser_id
+            ) AS loses,
+            (SELECT COUNT(*) 
+            FROM game g 
+            WHERE p.player_id = g.winner_id
+            ) AS wins
+            FROM player p ORDER BY wins DESC LIMIT 1";
+
+$sql_3 = "SELECT p.firstname, p.club, 
+          (SELECT COUNT(*) 
+          FROM game g 
+          WHERE p.player_id = g.loser_id
+          ) AS loses,
+          (SELECT COUNT(*) 
+          FROM game g 
+          WHERE p.player_id = g.winner_id
+          ) AS wins
+          FROM player p ORDER BY wins DESC LIMIT 1,10";
 
   $result = $mysqli->query($sql);
+  $result_2 = $mysqli->query($sql_2);
+  $result_3 = $mysqli->query($sql_3);
 
   function template( $file, $args ){
     // ensure the file exists
@@ -27,7 +54,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Sulisliiga</title>
+    <title>Nocco Sulisliiga</title>
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
     <link rel="stylesheet" href="public/css/normalize.css" type="text/css">
     <link rel="stylesheet" href="public/css/styles.css" type="text/css">
@@ -40,40 +67,89 @@
         <main>
           <h2>Ottelut</h2>
           <h3>Kaksinpelit</h3>
-
+          <table class="game-table">
+            <tbody>
+              <?php
+                if ($result->num_rows > 0) {
+                  $rownum = 1;
+                  while($row = $result->fetch_assoc()) {
+                    $rownum++;
+                    echo '
+                      <tr>
+                        <td class="mt-date">' . $row["date"] . '</td>
+                        <td align="left">' . $row["w_name"] . '</td>
+                        <td align="center" class="mt-score"><strong>' . $row["score"] . '</strong></td>
+                        <td align="right">' . $row["l_name"] . '</td>
+                      </tr>
+                    ';
+                  }
+                } else {
+                  echo "0 results";
+                }
+              ?>
+            </tbody>
+          </table>
+          <h3>Nelinpelit</h3>
+          <table class="game-table doubles">
+          <tbody>
+            <tr>
+              <td class="mt-date">24.4.2019</td>
+              <td align="left">Matti</td>
+              <td align="center" class="mt-score"><strong>21 - 0</strong></td>
+              <td align="right">Mikko</td>
+            </tr>
+            <tr>
+              <td class="mt-date">24.4.2019</td>
+              <td align="left">Matti</td>
+              <td align="center" class="mt-score"><strong>21 - 0</strong></td>
+              <td align="right">Mikko</td>
+            </tr>
+          </tbody>
+          </table>
         </main>
         <div class="right-sidebar">
           <h2>Sarjataulukot</h2>
           <h3>Kaksipeli</h3>
-          <!-- <div class="standings-leader">
-            <div class="sl-content">
-              <img class="sl-img" src="public/img/profile.png" alt="" height="100%">
-              <img class="sl-logo" src="public/img/apv_logo.png" alt="" height="120px">
-              <span class="sl-number">1</span>
-              <div class="sl-statistics">
-                <span class="sl-name">Matti</span>
-                <span>APV</span>
-                <span>V: 40 H: 1</span>
-              </div>
-            </div>
-          </div> -->
+          <?php 
+            $file = __DIR__ . '/templates/player-template.php';
+
+            $output = '';
+
+            foreach ( $result_2 as $row ){
+              $output.= template( $file, $row );
+            }
+
+            print $output;
+          ?>
           <table class="standings-table">
             <tr>
               <th>#</th>
               <th>Pelaaja</th>
-              <th>Joukkue</th>
+              <th>Seura</th>
               <th>V</th>
               <th>H</th>
             </tr>
-            <tr>
-              <td class="index">1.</td>
-              <td></td>
-              <td></td>
-              <td><strong></strong></td>
-              <td><strong></strong></td>
-            </tr>
+            <?php
+            if ($result_3->num_rows > 0) {
+              $rownum = 1;
+              while($row = $result_3->fetch_assoc()) {
+                $rownum++;
+                echo '
+                  <tr>
+                    <td class="index">' . $rownum . '.</td>
+                    <td>' . $row["firstname"] . '</td>
+                    <td>' . $row["club"] . '</td>
+                    <td><strong>' . $row["wins"] . '</strong></td>
+                    <td><strong>' . $row["loses"] . '</strong></td>
+                  </tr>
+                ';
+              }
+            } else {
+              echo "0 results";
+            }
+            ?>
           </table>
-          <!-- <h3>Nelinpeli</h3>
+          <h3>Nelinpeli</h3>
           <table class="standings-table">
             <tr>
               <th>#</th>
@@ -100,12 +176,12 @@
               <td><strong>7</strong></td>
             </tr>
             <tr>
-              <td class="index">3.</td>
+              <td class="index">4.</td>
               <td>Katariina & Mikko</td>
               <td><strong>11</strong></td>
               <td><strong>8</strong></td>
             </tr>
-          </table> -->
+          </table>
         </div>
         <footer>
           <span>Energized by: &nbsp&nbsp</span>

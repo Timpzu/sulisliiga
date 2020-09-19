@@ -1,10 +1,10 @@
 <?php
   require 'scripts/db.php';
 
-  $sql = "SELECT * FROM competitors";
+  $sql = "SELECT * FROM player";
   $result = $mysqli->query($sql);
-  while ($competitors[] = mysqli_fetch_object($result));
-  array_pop($competitors);
+  while ($player[] = mysqli_fetch_object($result));
+  array_pop($player);
 
   $mysqli->close();
 ?>
@@ -13,7 +13,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Sulisliiga - Ylläpitäjän näkymä</title>
+    <title>Ylläpitäjän näkymä | Nocco Sulisliiga </title>
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
     <link rel="stylesheet" href="public/css/normalize.css" type="text/css">
     <link rel="stylesheet" href="public/css/styles.css" type="text/css">
@@ -24,44 +24,41 @@
         <header>
         </header>
         <main>
-          <h1>Sulisliiga - Ylläpitäjän työkalut</h1>
-          <h2>Kirjaa ottelu</h2>
+          <h2>Kirjaa kaksinpeli</h2>
           <?php
             while($row = $result->fetch_assoc()) {
-              echo '<p>' . $row['first_name'] . '</p>';
+              echo '<p>' . $row['firstname'] . '</p>';
             }
           ?>
-          <form id="submit-match-form" method="post">
-            <label for="submit-match-competitor_id_1">Pelaaja 1</label>
-            <select id="submit-match-competitor_id_1" name="competitor_id_1" required="required">
-              <?php foreach ( $competitors as $competitor ) : ?>
-                <option value="<?php echo $competitor->competitor_id; ?>"><?php echo $competitor->first_name; ?></option>
+          <form id="submit-game-form" method="post">
+            <label for="submit-date">Päivämäärä</label>
+            <input type="date" id="submit-date" name="date" required="required">
+            <label for="submit-winner_id">Voittaja</label>
+            <select id="submit-winner_id" name="winner_id" required="required">
+              <?php foreach ( $player as $playa ) : ?>
+                <option value="<?php echo $playa->player_id; ?>"><?php echo $playa->firstname; ?></option>
               <?php endforeach; ?>
             </select>
-            <label for="submit-match-competitor_id_2">Pelaaja 2</label>
-            <select id="submit-match-competitor_id_2" name="competitor_id_2" required="required">
-              <?php foreach ( $competitors as $competitor ) : ?>
-                <option value="<?php echo $competitor->competitor_id; ?>"><?php echo $competitor->first_name; ?></option>
+            <label for="submit-loser_id">Häviäjä</label>
+            <select id="submit-loser_id" name="loser_id" required="required">
+              <?php foreach ( $player as $playa ) : ?>
+                <option value="<?php echo $playa->player_id; ?>"><?php echo $playa->firstname; ?></option>
               <?php endforeach; ?>
             </select>
-            <label for="submit-match-winner_competitor_id">Voittaja</label>
-            <select id="submit-match-winner_competitor_id" name="winner_competitor_id" required="required">
-              <?php foreach ( $competitors as $competitor ) : ?>
-                <option value="<?php echo $competitor->competitor_id; ?>"><?php echo $competitor->first_name; ?></option>
-              <?php endforeach; ?>
-            </select>
-            <label for="submit-match-match_score">Tulos</label>
-            <input id="submit-match-match_score" type="text" name="match_score" required="required">
+            <label for="submit-score">Tulos</label>
+            <input id="submit-score" type="text" name="score" placeholder="21 - 10" required="required">
             <input type="submit" value="Tallenna ottelu">
           </form>
         </main>
         <div class="right-sidebar">
           <h2>Lisää uusi pelaaja</h2>
-          <form id="submit-competitor-form" method="post">
-            <label for="submit_competitor_first_name">Etunimi</label>
-            <input id="submit_competitor_first_name" type="text" name="first_name" required="required">
-            <label for="submit_competitor_team">Joukkue</label>
-            <input id="submit_competitor_team" type="text" name="team">
+          <form id="submit-player-form" method="post">
+            <label for="submit_player_firstname">Etunimi</label>
+            <input id="submit_player_firstname" type="text" name="firstname" placeholder="Matti" required="required">
+            <label for="submit_player_lastname">Sukunimi</label>
+            <input id="submit_player_lastname" type="text" name="lastname" placeholder="Meikäläinen">
+            <label for="submit_player_club">Kerho</label>
+            <input id="submit_player_club" type="text" name="club" placeholder="KaMa">
             <input type="submit" value="Tallenna pelaaja">
           </form>
         </div>

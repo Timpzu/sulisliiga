@@ -1,28 +1,35 @@
 $(document).ready(function() {
-  $('#submit-competitor-form').on('submit', function(e){
+  $('#submit-player-form').on('submit', function(e){
     e.preventDefault();
-    var first_name = $('#submit_competitor_first_name').val();
-    var team = $('#submit_competitor_team').val();
+    var firstname = $('#submit_player_firstname').val();
+    var lastname = $('#submit_player_lastname').val();
+    var club = $('#submit_player_club').val();
 
     $.ajax({
       type: "POST",
-      url: 'scripts/submit-competitor.php',
-      data: {first_name: first_name, team: team},
+      url: 'scripts/submit-player.php',
+      data: {firstname: firstname, lastname: lastname, club: club},
       dataType: 'json'
     });
+    $('input[type="text"],textarea').val('');
   });
-  $('#submit-match-form').on('submit', function(e){
+  $('#submit-game-form').on('submit', function(e){
     e.preventDefault();
-    var competitor_id_1 = $('#submit-match-competitor_id_1').val();
-    var competitor_id_2 = $('#submit-match-competitor_id_2').val();
-    var winner_competitor_id = $('#submit-match-winner_competitor_id').val();
-    var match_score = $('#submit-match-match_score').val();
+    var date = $('#submit-date').val();
+    var winner_id = $('#submit-winner_id').val();
+    var loser_id = $('#submit-loser_id').val();
+    var score = $('#submit-score').val();
 
     $.ajax({
       type: "POST",
-      url: 'scripts/submit-match.php',
-      data: {competitor_id_1: competitor_id_1, competitor_id_2: competitor_id_2, winner_competitor_id: winner_competitor_id, match_score: match_score},
-      dataType: 'json'
+      url: 'scripts/submit-game.php',
+      data: {date: date, winner_id: winner_id, loser_id: loser_id, score: score},
+      dataType: 'json',
+      success: function() {
+        window.location.reload();
+      }
     });
+
+    $('input[type="text"], input[type="date"], textarea, select').val('');
   });
 });
