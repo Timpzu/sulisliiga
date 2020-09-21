@@ -9,10 +9,11 @@
   $mysqli->close();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fi">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Nocco Sulisliigan ylläpitäjän työkalut">
     <title>Ylläpitäjän näkymä | Nocco Sulisliiga </title>
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
     <link rel="stylesheet" href="public/css/normalize.css" type="text/css">
@@ -22,6 +23,7 @@
     <div class="wrapper">
       <div class="grid-container">
         <header>
+          <h1 class="sr-only">Nocco Sulisliiga ylläpitäjän näkymä</h1>
         </header>
         <main>
           <h2>Kirjaa ottelu</h2>
@@ -82,8 +84,8 @@
             <input type="submit" value="Tallenna ottelu">
           </form>
         </main>
-        <div class="right-sidebar">
-          <h2>Lisää uusi pelaaja</h2>
+        <section class="right-sidebar" aria-labelledby="submit_player_heading">
+          <h2 id="submit_player_heading">Lisää uusi pelaaja</h2>
           <form id="submit-player-form" method="post">
             <label for="submit_player_firstname">Etunimi</label>
             <input id="submit_player_firstname" type="text" name="firstname" placeholder="Matti" required="required">
@@ -93,14 +95,15 @@
             <input id="submit_player_club" type="text" name="club" placeholder="KaMa">
             <input type="submit" value="Tallenna pelaaja">
           </form>
-        </div>
+        </section>
         <footer>
-          <span>Energized by: &nbsp&nbsp</span>
-          <img src="public/img/logo-5.svg" alt="" height="80px">
+          <p><strong>Sponsored by:</strong></p>
+          <a href="index.php"><img src="public/img/logo-1.svg" alt="Nocco Sulisliiga ylläpito" height="64px"></a>
+          <a href="http://acmelogos.com/"><img src="public/img/logo-2.svg" alt="Acme logos website" height="64px"></a>
         </footer>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="public/js/submit.js"></script>
   </body>
 </html>

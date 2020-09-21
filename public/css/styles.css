@@ -8,7 +8,7 @@ body {
   line-height: 1.5em;
 }
 .wrapper {
-  background-color: white;
+  background-color: #ffffff;
   margin: 0 auto;
   max-width: 960px;
   padding: 0 48px;
@@ -36,6 +36,14 @@ h4 {
   font-size: 1.25em;
   margin: 0.5em 0 0.5em;
 }
+.sr-only {
+  height: 1px;
+  left:-10000px;
+  overflow:hidden;
+  position:absolute;
+  top: auto;
+  width: 1px;
+}
 main {
   grid-area: main;
 }
@@ -45,12 +53,19 @@ main {
 footer {
   align-items: center;
   background: #010326;
-  color: #fff;
+  color: #ffffff;
   display: flex;
   grid-area: footer;
-  justify-content: flex-end;
+  justify-content: center;
   margin: 50.56px -48px 0;
-  padding: 16px 48px;
+  padding: 0px 53px;
+}
+footer img {
+  margin: 16px;
+}
+footer span,
+footer p {
+  margin: 16px 0; 
 }
 .grid-container {
   display: grid;
@@ -67,6 +82,13 @@ footer {
   font-size: 1em;
   width: 100%;
 }
+.game-table thead {
+  background: #010326;
+  color: #ffffff;
+}
+.game-table thead th {
+  padding: 8px 0;
+}
 .game-table tbody {
   padding: 24px;
 }
@@ -82,15 +104,15 @@ footer {
 .game-table tr td.mt-score {
   font-size: 1.15em;
 }
-.game-table.singles tr:nth-child(odd),
+.game-table.singles tr:nth-child(even),
 .game-table.doubles tbody:nth-child(odd) {
   background-color: #EBECF2;
 }
-.game-table.singles tr:nth-child(odd) td.mt-date,
+.game-table.singles tr:nth-child(even) td.mt-date,
 .game-table.doubles tbody:nth-child(odd) td.mt-date {
   background: #F2C53D;
 }
-.game-table.singles tr:nth-child(even) td.mt-date,
+.game-table.singles tr:nth-child(odd) td.mt-date,
 .game-table.doubles tbody:nth-child(even) td.mt-date {
   background:#F2D649;
 }
@@ -132,7 +154,7 @@ footer {
   z-index: 50;
 }
 .standings-leader .sl-statistics {
-  color: #fff;
+  color: #ffffff;
   left: 204px;
   position: absolute;
   top: 12px;
@@ -146,7 +168,7 @@ footer {
   display: block;
 }
 .standings-leader span.sl-number {
-  color: #fff;
+  color: #ffffff;
   font-size: 1.75em;
   font-weight: bold;
   left: 8px;
@@ -163,7 +185,7 @@ footer {
 }
 .standings-table th,
 .standings-table td {
-  color: #fff;
+  color: #ffffff;
   padding: 8px;
 }
 .standings-table tr:nth-child(even) {
@@ -195,7 +217,7 @@ input[type=submit],
 input[type=reset] {
   background-color: #010326;
   border: none;
-  color: white;
+  color: #ffffff;
   cursor: pointer;
   margin: 4px 2px;
   padding: 16px 32px;
@@ -226,6 +248,8 @@ label {
     padding-top: 75%;
   }
   footer {
+    flex-direction: column;
+    justify-content: center;
     margin: 50.56px -16px 0;
     padding: 16px;
   }

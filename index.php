@@ -18,10 +18,11 @@
   }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fi">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Nocco Sulisliigan ottelutilastot ja sarjataulukot">
     <title>Nocco Sulisliiga</title>
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
     <link rel="stylesheet" href="public/css/normalize.css" type="text/css">
@@ -31,11 +32,20 @@
     <div class="wrapper">
       <div class="grid-container">
         <header>
+          <h1 class="sr-only">Nocco Sulisliiga</h1>
         </header>
         <main>
-          <h2>Ottelut</h2>
-          <h3>Kaksinpelit</h3>
+          <h2>Ottelutulokset</h2>
+          <h3>Kaksinpelitulokset</h3>
           <table class="game-table singles">
+            <thead>
+              <tr>
+                <th>Päivämäärä</th>
+                <th>Voittaja</th>
+                <th>Tulos</th>
+                <th>Häviäjä</th>
+              </tr>
+            </thead>
             <tbody>
               <?php
                 if ($result_1->num_rows > 0) {
@@ -57,8 +67,16 @@
               ?>
             </tbody>
           </table>
-          <h3>Nelinpelit</h3>
+          <h3>Nelinpelitulokset</h3>
           <table class="game-table doubles">
+            <thead>
+              <tr>
+                <th>Päivämäärä</th>
+                <th>Voittajat</th>
+                <th>Tulos</th>
+                <th>Häviäjät</th>
+              </tr>
+            </thead>
             <?php 
               $file = __DIR__ . '/templates/doubles-template.php';
 
@@ -72,8 +90,8 @@
             ?>
           </table>
         </main>
-        <div class="right-sidebar">
-          <h2>Sarjataulukot</h2>
+        <section class="right-sidebar" aria-labelledby="standings_heading">
+          <h2 id="standings_heading">Sarjataulukot</h2>
           <h3>Kaksinpelitaulukko</h3>
           <?php 
             $file = __DIR__ . '/templates/player-template.php';
@@ -87,13 +105,15 @@
             print $output;
           ?>
           <table class="standings-table">
-            <tr>
-              <th>#</th>
-              <th>Pelaaja</th>
-              <th>Seura</th>
-              <th>V</th>
-              <th>H</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Pelaaja</th>
+                <th>Seura</th>
+                <th>V</th>
+                <th>H</th>
+              </tr>
+            </thead>
             <?php
             if ($result_4->num_rows > 0) {
               $rownum = 1;
@@ -116,13 +136,15 @@
           </table>
           <h3>Nelinpelitaulukko</h3>
           <table class="standings-table">
-            <tr>
-              <th>#</th>
-              <th>Pelaaja</th>
-              <th>Seura</th>
-              <th>V</th>
-              <th>H</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Pelaaja</th>
+                <th>Seura</th>
+                <th>V</th>
+                <th>H</th>
+              </tr>
+            </thead>
             <?php
             if ($result_5->num_rows > 0) {
               $rownum = 0;
@@ -143,10 +165,11 @@
             }
             ?>
           </table>
-        </div>
+        </section>
         <footer>
-          <span>Energized by: &nbsp&nbsp</span>
-          <img src="public/img/logo-5.svg" alt="" height="80px">
+          <p><strong>Sponsored by:</strong></p>
+          <a href="admin.php"><img src="public/img/logo-1.svg" alt="Nocco Sulisliiga ylläpito" height="64px"></a>
+          <a href="http://acmelogos.com/"><img src="public/img/logo-2.svg" alt="Acme logos website" height="64px"></a>
         </footer>
       </div>
     </div>
