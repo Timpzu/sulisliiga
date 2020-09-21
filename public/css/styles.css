@@ -56,16 +56,16 @@ footer {
   color: #ffffff;
   display: flex;
   grid-area: footer;
-  justify-content: center;
+  justify-content: flex-end;
   margin: 50.56px -48px 0;
   padding: 0px 53px;
 }
 footer img {
-  margin: 16px;
+  margin: 24px 12px;
 }
 footer span,
 footer p {
-  margin: 16px 0; 
+  margin: 16px 12px; 
 }
 .grid-container {
   display: grid;
