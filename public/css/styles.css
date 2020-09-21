@@ -1,18 +1,17 @@
 body {
-  background: #fff;
+  background: #EBECF2;
   background-attachment: fixed;
   background-image: url('');
   background-size: contain;
-  color: #061623;
+  color: #010326;
   font-family: 'PT Sans Caption', sans-serif;
   line-height: 1.5em;
 }
 .wrapper {
   background-color: white;
-  box-sizing: border-box;
   margin: 0 auto;
   max-width: 960px;
-  padding: 0 24px;
+  padding: 0 48px;
 }
 header {
   align-items: center;
@@ -21,8 +20,8 @@ header {
   background-repeat: no-repeat;
   background-size: contain;
   grid-area: header;
-  margin-top: 48px;
-  padding-top: 44%;
+  margin-top: 50.56px;
+  padding-top: 42.86%;
   position: relative;
   width: 100%;
 }
@@ -33,6 +32,10 @@ h3 {
   font-size: 1.5em;
   padding-top: 0.5em;
 }
+h4 {
+  font-size: 1.25em;
+  margin: 0.5em 0 0.5em;
+}
 main {
   grid-area: main;
 }
@@ -41,13 +44,13 @@ main {
 }
 footer {
   align-items: center;
-  background: #061623;
+  background: #010326;
   color: #fff;
   display: flex;
   grid-area: footer;
   justify-content: flex-end;
-  margin: 0 -24px;
-  padding: 16px 24px;
+  margin: 50.56px -48px 0;
+  padding: 16px 48px;
 }
 .grid-container {
   display: grid;
@@ -60,11 +63,11 @@ footer {
 }
 .game-table {
   border-collapse: collapse;
+  border: #010326 5px solid;
   font-size: 1em;
   width: 100%;
 }
 .game-table tbody {
-  border: #061623 5px solid;
   padding: 24px;
 }
 .game-table tr td {
@@ -73,23 +76,39 @@ footer {
   text-align: center;
 }
 .game-table tr td.mt-date {
-  background: #f7e946;
-  color: #000;
+  color: #010326;
   width: 25%;
-}
-.game-table.doubles tr td.mt-date {
-  background: #0087C9;
-  color: #000;
 }
 .game-table tr td.mt-score {
   font-size: 1.15em;
 }
+.game-table.singles tr:nth-child(odd),
+.game-table.doubles tbody:nth-child(odd) {
+  background-color: #EBECF2;
+}
+.game-table.singles tr:nth-child(odd) td.mt-date,
+.game-table.doubles tbody:nth-child(odd) td.mt-date {
+  background: #F2C53D;
+}
+.game-table.singles tr:nth-child(even) td.mt-date,
+.game-table.doubles tbody:nth-child(even) td.mt-date {
+  background:#F2D649;
+}
+.game-table.doubles tbody:nth-child(odd) {
+  padding: 24px;
+}
 .game-table.doubles tr td {
-  padding: 8px;
+  padding: 2px;
+}
+.game-table.doubles tr td.mt-top-data {
+  padding-top: 16px;
+}
+.game-table.doubles tr td.mt-bottom-data {
+  padding-bottom: 16px;
 }
 .standings-leader {
-  background: linear-gradient(#061623, #0D2E5A);
-  border: #061623 5px solid;
+  background: linear-gradient(#010326, #091973);
+  border: #010326 5px solid;
   border-bottom: 0;
   box-sizing: border-box;
   height: 160px;
@@ -140,7 +159,7 @@ footer {
   width: 100%;
 }
 .standings-table tr {
-  border: #061623 5px solid;
+  border: #010326 5px solid;
 }
 .standings-table th,
 .standings-table td {
@@ -148,10 +167,10 @@ footer {
   padding: 8px;
 }
 .standings-table tr:nth-child(even) {
-  background-color: #103665;
+  background-color: #091973;
 }
 .standings-table tr:nth-child(odd) {
-  background-color: #061623;
+  background-color: #010326;
 }
 .standings-table th {
   text-align: left;
@@ -160,24 +179,21 @@ input {
   width: 100%;
 }
 input[type=text],
-input[type=date] {
-  border:#061623 3px solid;
+input[type=date],
+select {
+  border:#010326 3px solid;
   box-sizing: border-box;
   margin: 4px 0 16px;
   padding: 12px 16px;
   width: 100%;
 }
 select {
-  background-color: #eeeeee;
-  border:#061623 3px solid;
-  margin: 8px 0;
-  padding: 12px 16px;
-  width: 100%;
+  background-color: #EBECF2;
 }
 input[type=button], 
 input[type=submit], 
 input[type=reset] {
-  background-color: #061623;
+  background-color: #010326;
   border: none;
   color: white;
   cursor: pointer;
@@ -207,10 +223,10 @@ label {
     padding: 0 16px;
   }
   header {
-    padding-top: 56.6%;
+    padding-top: 75%;
   }
   footer {
-    margin: 0 -16px;
+    margin: 50.56px -16px 0;
     padding: 16px;
   }
 }

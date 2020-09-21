@@ -24,15 +24,14 @@
         <header>
         </header>
         <main>
-          <h2>Kirjaa kaksinpeli</h2>
-          <?php
-            while($row = $result->fetch_assoc()) {
-              echo '<p>' . $row['firstname'] . '</p>';
-            }
-          ?>
-          <form id="submit-game-form" method="post">
-            <label for="submit-date">Päivämäärä</label>
-            <input type="date" id="submit-date" name="date" required="required">
+          <h2>Kirjaa ottelu</h2>
+        <!-- Singles form -->
+          <h3>Kirjaa kaksinpeli</h3>
+          <form id="submit-singles-form" method="post">
+            <label for="submit-singles_date">Päivämäärä</label>
+            <input type="date" id="submit-singles_date" name="date" required="required">
+            <label for="submit-singles_score">Tulos</label>
+            <input id="submit-singles_score" type="text" name="score" placeholder="21 - 10" required="required">
             <label for="submit-winner_id">Voittaja</label>
             <select id="submit-winner_id" name="winner_id" required="required">
               <?php foreach ( $player as $playa ) : ?>
@@ -45,8 +44,41 @@
                 <option value="<?php echo $playa->player_id; ?>"><?php echo $playa->firstname; ?></option>
               <?php endforeach; ?>
             </select>
-            <label for="submit-score">Tulos</label>
-            <input id="submit-score" type="text" name="score" placeholder="21 - 10" required="required">
+            <input type="submit" value="Tallenna ottelu">
+          </form>
+          <!-- Doubles form -->
+          <h3>Kirjaa Nelinpeli</h3>
+          <form id="submit-doubles-form" method="post">
+            <label for="submit-doubles_date">Päivämäärä</label>
+            <input type="date" id="submit-doubles_date" name="date" required="required">
+            <label for="submit-doubles_score">Tulos</label>
+            <input id="submit-doubles_score" type="text" name="score" placeholder="21 - 10" required="required">
+            <h4>Voittajat</h4>
+            <label for="submit-winner1_id">Voittaja 1</label>
+            <select id="submit-winner1_id" name="winner1_id" required="required">
+              <?php foreach ( $player as $playa ) : ?>
+                <option value="<?php echo $playa->player_id; ?>"><?php echo $playa->firstname; ?></option>
+              <?php endforeach; ?>
+            </select>
+            <label for="submit-winner2_id">Voittaja 2</label>
+            <select id="submit-winner2_id" name="winner2_id" required="required">
+              <?php foreach ( $player as $playa ) : ?>
+                <option value="<?php echo $playa->player_id; ?>"><?php echo $playa->firstname; ?></option>
+              <?php endforeach; ?>
+            </select>
+            <h4>Häviäjät</h4>
+            <label for="submit-loser1_id">Häviäjä 1</label>
+            <select id="submit-loser1_id" name="loser1_id" required="required">
+              <?php foreach ( $player as $playa ) : ?>
+                <option value="<?php echo $playa->player_id; ?>"><?php echo $playa->firstname; ?></option>
+              <?php endforeach; ?>
+            </select>
+            <label for="submit-loser2_id">Häviäjä 2</label>
+            <select id="submit-loser2_id" name="loser2_id" required="required">
+              <?php foreach ( $player as $playa ) : ?>
+                <option value="<?php echo $playa->player_id; ?>"><?php echo $playa->firstname; ?></option>
+              <?php endforeach; ?>
+            </select>
             <input type="submit" value="Tallenna ottelu">
           </form>
         </main>
