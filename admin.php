@@ -98,8 +98,8 @@
         </section>
         <footer>
           <p><strong>Sponsored by:</strong></p>
-          <a href="index.php"><img src="public/img/logo-1.svg" alt="Nocco Sulisliiga ylläpito" height="64px"></a>
-          <a href="http://acmelogos.com/"><img src="public/img/logo-2.svg" alt="Acme logos website" height="64px"></a>
+          <a href="index.php"><img src="public/img/logo-1.svg" alt="Nocco Sulisliiga ylläpito" height="50px"></a>
+          <a href="http://acmelogos.com/"><img src="public/img/logo-2.svg" alt="Acme logos website" height="50px"></a>
         </footer>
       </div>
     </div>
