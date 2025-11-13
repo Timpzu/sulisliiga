@@ -1,0 +1,5 @@
+# Sulisliiga badminton match tracking website
+I created the Sulisliiga site for my friends and me as a fun way to gather statistics from our badminton games and track our rankings. The site features a separate admin view that allows us to enter scores, and it automatically calculates and tracks the rankings accordingly.
+<br/>
+<br/>
+![alt text](http://raw.githubusercontent.com/Timpzu/sulisliiga/refs/heads/master/sulisliiga_screenshot.png "Sulisliiga website screenshot")
